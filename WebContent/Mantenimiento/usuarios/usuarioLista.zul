@@ -1,0 +1,52 @@
+<?page title="Lista de Usuarios" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winListaUsuarios" ?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winListaUsuarios" hflex="1" vflex="1" border="none"
+		apply="ec.edu.upse.gcf.listas.UsuarioLista"
+		style="padding: 0 0 0 0;background:#FFFFFF;">
+		<vlayout vflex="1">
+			<div>
+				<button id="btnNuevo" label="Nuevo"
+					iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnEditar" label="Editar"
+					iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o" zclass="btn btn-outline-primary btn btn-sm" />
+			</div>
+			<hlayout>
+				<textbox id="txtBuscar" hflex="1" />
+				<button id="btnBuscar" label="Buscar!"
+					iconSclass="z-icon-search" zclass="btn btn-outline-primary btn btn-sm" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox id="lstUsuarios"
+					model="@{winListaUsuarios$composer.usuarios}" 
+					selectedItem="@{winListaUsuarios$composer.usuarioSeleccionado}"
+					hflex="1" vflex="1">
+					<listhead>
+						<listheader label="Cedula" />
+						<listheader label="Nombres" />
+						<listheader label="Apellidos" />
+						<listheader label="Dirección" />
+						<listheader label="Teléfono" />
+						<listheader label="Correo" />
+						<listheader label="Usuario" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="${each.cedula}" />
+							<listcell label="${each.nombres}" />
+							<listcell label="${each.apellidos}" />
+							<listcell label="${each.direccion}" />
+							<listcell label="${each.telefono}" />
+							<listcell label="${each.correo}" />
+							<listcell label="${each.usuario}" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

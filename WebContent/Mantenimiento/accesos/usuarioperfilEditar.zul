@@ -1,0 +1,46 @@
+
+<?page title="Asignaci�n de perfiles a usuarios" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioPerfilEditar" border="none" width="450px"
+		style="padding: 0 0 0 0;background:#0489B1;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.UsuarioPerfilEditar')">
+		<caption label="Ingrese datos" height="20px"
+			style="padding: 0 0 0 0;background:#0489B1;"
+			sclass="p-0 mb-0 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Usuario:" />
+						<combobox model="@load(vm.usuarios)"
+							placeholder="Seleccione Usuario" 
+							selectedItem="@bind(vm.usuarioperfil.usuario)"
+							value="@load(vm.usuarioperfil.usuario.usuario)" width="300px">
+						</combobox>
+					</row>
+					<row>
+						<label value="Perfil" />
+						<combobox model="@load(vm.perfiles)"
+							placeholder="Seleccione perfil"
+							selectedItem="@bind(vm.usuarioperfil.perfil)"
+							value="@load(vm.usuarioperfil.perfil.nombre)" width="300px">
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+			<hlayout>
+				<button label="Grabar" iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm" onClick="@command('grabar')" />
+				<button label="Salir" iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm" onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

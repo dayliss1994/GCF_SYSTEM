@@ -1,0 +1,46 @@
+<?page title="Opción Perfil" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.OpcionPerfilLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#0B610B;"
+		border="none">
+		<caption label="Opción de Perfiles" height="20px"
+			style="padding: 0 0 0 0;background:#0B610B;"
+			sclass="p-0 mb-0 text-white font-italic font-weight-bold" />
+		<vlayout vflex="1">
+			<toolbar>
+				<toolbarbutton label="Nuevo" iconSclass="z-icon-plus"
+					onClick="@command('nuevo')" />
+				<toolbarbutton label="Editar" iconSclass="z-icon-pencil"
+					onClick="@command('editar')" />
+				<toolbarbutton label="Eliminar"
+					iconSclass="z-icon-trash-o" onClick="@command('eliminar')" />
+			</toolbar>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.opcionperfiles)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.opcionperfilSeleccionada)"
+					vflex="1">
+					<listhead>
+						<listheader label="Opción" />
+						<listheader label="Perfil" />
+						
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.opcion.titulo)" />
+							<listcell label="@load(each.perfil.nombre)" />							
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+
+</zk>

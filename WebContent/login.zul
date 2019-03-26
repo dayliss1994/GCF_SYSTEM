@@ -1,0 +1,76 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window border="none" width="375px"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="overlapped">
+		<caption label=" Control Acceso" height="20px"
+			style="background:#0489B1;"
+			sclass="p-2 mb text-white font-italic font-weight-bold" />
+		<div>
+			<h:form id="f" name="f" action="j_spring_security_check"
+				method="POST" xmlns:h="native">
+				<!-- Formulario para autenticacion -->
+				<vlayout>
+					<groupbox hflex="1">
+						<hlayout>
+							<div align="left">
+								<image src="/img/usuario.ico" />
+							</div>
+							<div align="center">
+								<label value="Usuario: "
+									sclass="font-weight-bold" />
+								<textbox name="username" width="200px" />
+							</div>
+						</hlayout>
+						<hlayout>
+							<div align="left">
+								<image src="/img/pass.ico" />
+							</div>
+							<div align="center">
+								<space spacing="12px" />
+								<label value="Clave: "
+									sclass="font-weight-bold" />
+								<textbox name="password" type="password"
+									width="200px" />
+							</div>
+						</hlayout>
+					</groupbox>
+					<groupbox id="hola" style="background:#DAF5FC">
+						<div align="center">
+							<!-- Procesa el login -->
+							<button label="Ingresar" type="submit"
+								iconSclass="z-icon-sign-in"
+								sclass="btn btn-outline-primary btn btn-sm" />
+						</div>						
+						<div align="center">
+							<!-- Procesa el login -->
+							<a
+								href="/Mantenimiento/recuperar/recuperar.zul">
+								¿Olvidó su contraseña?
+							</a>
+						</div>
+					</groupbox>
+					<!-- Mensaje de login  -->
+					<div align="center">
+						<html style="color:red"
+							if="${not empty param.login_error}">
+
+							
+							<![CDATA[ Ingreso fallido, intente
+							nuevamente.]]>
+																																										
+						</html>
+					</div>
+					<div>
+						<html>
+							<input type="hidden"
+								name="${_csrf.parameterName}" value="${_csrf.token}" />
+						</html>
+					</div>
+				</vlayout>
+			</h:form>
+		</div>
+	</window>
+</zk>

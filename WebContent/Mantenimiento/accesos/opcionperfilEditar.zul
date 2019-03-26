@@ -1,0 +1,54 @@
+<?page title="Permisos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
+		style="padding: 0 0 0 0;background:#0B610B;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.OpcionPerfilEditar')">
+		<caption src="/img/opcperfil.ico" label="Ingrese datos"
+			height="20px" style="padding: 0 0 0 0;background:#0B610B;"
+			sclass="p-0 mb-0 text-white font-italic font-weight-bold" />
+
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Perfil:" />
+						<combobox model="@load(vm.perfiles)"
+							placeholder="Seleccione perfil"
+							onSelect="@command('listaropciones')"
+							selectedItem="@bind(vm.perfilseleccionado)"
+							value="@load(vm.opcionperfil.perfil.nombre)" width="350px">
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+			<vlayout>
+				<listbox model="@load(vm.opcionesAsignadas)" 
+				multiple="true"
+				checkmark="true"
+					autopaging="true" mold="paging" height="375px">
+					<listhead>
+						<listheader label="Opciones" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.titulo)" />
+						</listitem>
+					</template>
+				</listbox>
+			</vlayout>
+			<hlayout>
+				<button label="Grabar" iconSclass="z-icon-save"
+					sclass="btn btn-outline-success" onClick="@command('grabar')" />
+				<button label="Salir" iconSclass="z-icon-sign-out"
+					sclass="btn btn-outline-success" onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

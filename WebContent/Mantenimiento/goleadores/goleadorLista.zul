@@ -1,0 +1,51 @@
+<?page title="Lista de Goleadores" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.GoleadorLista')"
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">
+		<caption label="Lista Goleadores" height="20px"
+			style="padding: 0 0 0 0;background:#FFFFFF;"
+			sclass="p-0 mb-0 text-black font-italic font-weight-bold" />
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button label="Editar" iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button label="Eliminar" iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.goleadores)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.goleadorSeleccionado)" hflex="1"
+					vflex="1">
+					<listhead>
+						<listheader label="Partido" />
+						<listheader label="Jugador" />
+						<listheader label="1er Tiempo" />
+						<listheader label="2do Tiempo" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.partido.nombrepartido)" />
+							<listcell label="@load(each.jugador.nombres)" />
+							<listcell label="@load(each.primertiempo)" />
+							<listcell label="@load(each.segundotiempo)" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

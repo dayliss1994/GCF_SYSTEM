@@ -1,0 +1,101 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./winUsuarioEditar" ?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioEditar" border="none" width="500px"
+		apply="ec.edu.upse.gcf.editar.UsuarioEditar"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center">
+		<caption label="Ingrese datos" height="20px"
+			style="background:#0489B1;"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Cédula : * " />
+						<textbox id="cedula" xmlns:w="client"
+							value="@{winUsuarioEditar$composer.usuario.cedula}" width="200px"
+							constraint="no empty: Debe ingresar cedula" maxlength="10">
+							<attribute w:name="doKeyPress_">
+								function(evt){ if(this.getValue().length
+								> 0 ){ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt);
+								}else{ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt); }
+								}
+							</attribute>
+						</textbox>
+					</row>
+					<row>
+						<label value="Nombres : * " />
+						<textbox id="nombres" xmlns:w="client"
+							value="@{winUsuarioEditar$composer.usuario.nombres}"
+							width="250px"
+							constraint="no empty: Por favor ingrese su nombre completo."
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Apellidos : * " />
+						<textbox id="apellidos"
+							value="@{winUsuarioEditar$composer.usuario.apellidos}"
+							width="250px" constraint="no empty: Debe ingresar los apellidos."
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Dirección : " />
+						<textbox id="direccion"
+							value="@{winUsuarioEditar$composer.usuario.direccion}"
+							width="250px" maxlength="255" />
+					</row>
+					<row>
+						<label value="Teléfono : " />
+						<textbox id="telefono" xmlns:w="client"
+							value="@{winUsuarioEditar$composer.usuario.telefono}"
+							width="250px" maxlength="10">
+							<attribute w:name="doKeyPress_">
+								function(evt){ if(this.getValue().length
+								> 0 ){ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt);
+								}else{ if (!this._shallIgnore(evt,
+								"0123456789")) this.$doKeyPress_(evt); }
+								}
+							</attribute>
+						</textbox>
+					</row>
+					<row>
+						<label value="Correo : " />
+						<textbox id="correo"
+							value="@{winUsuarioEditar$composer.usuario.correo}" width="250px"
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Usuario : * " />
+						<textbox id="nombUsuario"
+							value="@{winUsuarioEditar$composer.usuario.usuario}"
+							width="250px"
+							constraint="no empty: Debe ingresar su nuevo usuario de identificación."
+							maxlength="255" />
+					</row>
+					<row>
+						<label value="Clave : * " />
+						<textbox id="clave" type="password"
+							value="@{winUsuarioEditar$composer.usuario.clave}" width="250px"
+							constraint="no empty: Debe ingresar la nueva clave de acceso."
+							maxlength="255" />
+					</row>
+				</rows>
+			</grid>
+			<hlayout>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save" sclass="btn btn-outline-primary btn btn-sm" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					sclass="btn btn-outline-primary btn btn-sm" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

@@ -1,0 +1,49 @@
+<?page title="Lista de Campeonatos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window hflex="1" vflex="1" border="none"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.CampeonatoLista')"
+		style="padding: 0 0 0 0;background:#FFFFFF;">
+		<caption label="Lista de Campeonatos" height="20px"
+			style="background:#FFFFFF;"
+			sclass="p-0 mb-0 text-black font-italic font-weight-bold" />
+		<vlayout vflex="1">
+			<div>
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('nuevo')" />
+				<button label="Editar" iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('editar')" />
+				<button label="Eliminar" iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('eliminar')" />
+			</div>
+			<hlayout>
+				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<button label="Buscar!" iconSclass="z-icon-search" zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('buscar')" />
+			</hlayout>
+			<hlayout vflex="1" hflex="1">
+				<listbox model="@load(vm.campeonatos)" autopaging="true"
+					mold="paging" selectedItem="@bind(vm.campeonatoSeleccionado)" vflex="1">
+					<listhead>
+						<listheader label="Tipo Campeonato" width="150px" />
+						<listheader label="Nombre Campeonato" width="450px"/>
+						<listheader label="Fecha Inicio" align="center"/>
+						<listheader label="Fecha Fin" align="center"/>
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="@load(each.tipoCampeonato)" />
+							<listcell label="@load(each.nombreC)" />
+							<listcell label="@load(each.fechaInicio) @converter('formatedDate',format='dd/MM/yyyy')" />
+							<listcell label="@load(each.fechaFin) @converter('formatedDate',format='dd/MM/yyyy')" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

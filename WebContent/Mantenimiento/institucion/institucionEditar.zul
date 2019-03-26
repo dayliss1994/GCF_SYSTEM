@@ -1,0 +1,144 @@
+<?page title="Jugador" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winInstitucionEditar" border="none" width="600px"
+		vflex="1" sclass="p-0 mb-0 bg-info"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.InstitucionEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout vflex="1" hflex="1">
+			<tabbox vflex="1" hflex="1">
+				<tabs>
+					<tab label="Datos 1" />
+					<tab label="Datos 2" />
+				</tabs>
+				<tabpanels>
+					<tabpanel>
+						<vlayout vflex="1" hflex="1">
+							<grid hflex="1" sclass="form-group-row">
+								<columns>
+									<column hflex="min" align="right" />
+									<column hflex="1" align="left" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Nombre:"
+											sclass="font-weight-bold col-form-label" />
+										<div>
+											<textbox id="nombre"
+												style="text-transform:uppercase" xmlns:w="client"
+												value="@bind(vm.institucion.nombre)" hflex="1" />
+										</div>
+									</row>
+									<row>
+										<label value="Fundación: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="fundacion"
+											style="text-transform:uppercase"
+											value="@bind(vm.institucion.fundacion)" hflex="1"
+											maxlength="255" />
+									</row>
+									<row>
+										<label value="Afiliada: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="afiliada"
+											style="text-transform:uppercase"
+											value="@bind(vm.institucion.afiliada)" hflex="1"
+											maxlength="255" />
+									</row>
+									<row>
+										<label value="Dirección: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="direccion"
+											style="text-transform:uppercase"
+											value="@bind(vm.institucion.direccion)" hflex="1" />
+									</row>
+									<row>
+										<label value="Teléfonos: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="telefono" xmlns:w="client"
+											style="text-transform:uppercase"
+											value="@bind(vm.institucion.telefonos)" hflex="1"
+											maxlength="20">
+											<attribute w:name="doKeyPress_">
+												function(evt){
+												if(this.getValue().length
+												> 0 ){ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												}else{ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												} }
+											</attribute>
+										</textbox>
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+					</tabpanel>
+					<tabpanel>
+						<vlayout>
+							<grid hflex="1" sclass="form-group-row">
+								<columns>
+									<column hflex="min" align="right" />
+									<column hflex="1" align="left" />
+								</columns>
+								<rows>
+									<row>
+										<label value="Logo:"
+											sclass="font-weight-bold col-form-label" />
+										<div align="left">
+											<image width="125px"
+												content="@load(vm.imagen)"
+												style="border:1px #cccccc solid; " />
+											<separator spacing="3px" />
+											<div align="left">
+												<button id="btnUpload"
+													label="Cargar..." upload="true" width="125px"
+													onUpload="@command('subir', upEvent=event)"
+													iconSclass="z-icon-upload"
+													zclass="btn btn-outline-primary btn btn-sm" />
+											</div>
+										</div>
+									</row>
+									<row>
+										<label value="Correo: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="correo"
+											style="text-transform:lowercase"
+											value="@bind(vm.institucion.correo)" onClick="" hflex="1"
+											maxlength="100" />
+									</row>
+									<row>
+										<label value="Lugar: "
+											sclass="font-weight-bold col-form-label" />
+										<textbox id="lugar"
+											style="text-transform:uppercase"
+											value="@bind(vm.institucion.lugar)" hflex="1" maxlength="100" />
+									</row>
+								</rows>
+							</grid>
+						</vlayout>
+					</tabpanel>
+				</tabpanels>
+			</tabbox>
+			<!-- Botones -->
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>

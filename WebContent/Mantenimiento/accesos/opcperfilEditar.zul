@@ -1,0 +1,74 @@
+<?page title="Permisos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
+		style="padding: 0 0 0 0;background:#FFFFFF;"
+		apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.OpcionPerfilEditar')">
+		<caption label="Seleccione permisos a los perfiles"
+			height="15px" style="padding: 0 0 0 0;background:#FFFFFF;"
+			sclass="p-0 mb-0 text-black font-italic font-weight-bold" />
+		<vlayout hflex="1" vflex="1">
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Perfil:" />
+						<combobox model="@load(vm.perfiles)"
+							placeholder="Seleccione perfil"
+							onSelect="@command('listaropciones')"
+							selectedItem="@bind(vm.perfilseleccionado)"
+							value="@load(vm.opcionperfil.perfil.nombre)" width="350px">
+						</combobox>
+					</row>
+				</rows>
+			</grid>
+			<hbox hflex="1" vflex="1" align="center">
+					<listbox model="@load(vm.opcionesDisponible)"
+						selectedItem="@bind(vm.opcionseleccionado)"
+						
+							hflex="1" vflex="1">
+							<listhead>
+								<listheader
+									label="Opciones Disponible" />
+							</listhead>
+							<template name="model">
+								<listitem>
+									<listcell
+										label="@load(each.titulo)" />
+								</listitem>
+							</template>
+						</listbox>
+					<vbox>
+						<button iconSclass="z-icon-angle-right" disabled="@bind(empty vm.opcionseleccionado)"
+							sclass="btn btn-outline-success" onClick="@command('agregar')" />
+						<button iconSclass="z-icon-angle-double-right" disabled="@bind(empty vm.opcionesDisponible)"
+							sclass="btn btn-outline-success" onClick="@command('agregartodo')" />
+						<button iconSclass="z-icon-angle-left" disabled="@bind(empty vm.quitaropcion)"
+							sclass="btn btn-outline-success" onClick="@command('quitar')" />
+						<button iconSclass="z-icon-angle-double-left" disabled="@bind(empty vm.opcionesAsignadas)"
+							sclass="btn btn-outline-success" onClick="@command('quitartodo')" />
+					</vbox>
+					<listbox model="@load(vm.opcionesAsignadas)"
+						selectedItem="@bind(vm.quitaropcion)"
+						hflex="1" vflex="1">
+							<listhead>
+								<listheader label="Opción Asignada" />
+							</listhead>
+							<template name="model">
+								<listitem>
+									<listcell
+										label="@load(each.titulo)" />
+								</listitem>
+							</template>
+					</listbox>	
+			</hbox>
+			<button label="Grabar" iconSclass="z-icon-save"
+					sclass="btn btn-outline-success" onClick="@command('grabar')" />
+		</vlayout>
+	</window>
+</zk>

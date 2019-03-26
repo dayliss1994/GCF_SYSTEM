@@ -1,0 +1,91 @@
+<?page title="Inscripción Equipos" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winDetalleCampeonatoEditar" border="none" width="550px"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.DetalleCampeonatoEditar')"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="NombreCampeonato : * "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.campeonatos)"
+							selectedItem="@bind(vm.detallecampeonato.campeonato)"
+							value="@load(vm.detallecampeonato.campeonato.nombreC)"
+							placeholder="Seleccione una opción" hflex="1">
+							<template name="model" var="n">
+								<comboitem label="@bind(n.nombreC)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</row>
+					<row>
+						<label value="Categoría : * "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.categoria)"
+							selectedItem="@bind(vm.detallecampeonato.categoria)"
+							value="@load(vm.detallecampeonato.categoria.nombre)"
+							placeholder="Seleccione una opción" hflex="1">
+							<template name="model" var="c">
+								<comboitem label="@bind(c.nombre)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</row>
+
+				</rows>				
+			</grid>
+			<hlayout vflex="1">
+				<listbox id="listBox" model="@load(vm.equipos)" mold="paging"
+					autopaging="true"
+					selectedItem="@bind(vm.equipoSeleccionado)"			
+					multiple="true" checkmark="true" height="310px">
+					<listhead>
+						<listheader label="Equipos" />
+					</listhead>
+					<template name="model">
+						<listitem>
+							<listcell label="${each.nombre}" />
+						</listitem>
+					</template>
+				</listbox>
+			</hlayout>
+			<grid>
+				<columns>
+					<column align="right" hflex="min" />
+					<column align="left" hflex="1" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Observación : * "
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="observacion" hflex="1" height="80px"
+							value="@bind(vm.detallecampeonato.observacion)"
+							constraint="no empty: Por favor ingrese alguna observación en caso de ser necesario"
+							maxlength="255" />
+					</row>
+				</rows>
+			</grid>
+			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
+			<hlayout>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('salir')" />
+			</hlayout>
+		</vlayout>
+	</window>
+</zk>

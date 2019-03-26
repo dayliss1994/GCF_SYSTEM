@@ -1,0 +1,61 @@
+<?page title="Recuperar contraseña" contentType="text/html;charset=UTF-8"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window border="none" style="padding: 0 0 0 0;background:#0489B1;"
+		position="center" mode="overlapped" width="400px" vflex="1"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.login.Recuperar')"
+		validationMessages="@id('vmsgs')">
+		<caption label="Recuperar contraseña" height="20px"
+			style="padding: 0 0 0 0;background:FFFFFF;"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid hflex="1" sclass="form-group-row">
+				<columns>
+					<column hflex="min" align="right" />
+					<column hflex="1" align="left" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Correo :"
+							sclass="font-weight-bold col-form-label" />
+						<textbox value="@bind(vm.correo)" hflex="1"
+							constraint="/.+@.+\.[a-z]+/: Por favor ingrese un correo válido" />
+					</row>
+				</rows>
+			</grid>
+			<div align="center">
+				<bw.captcha id="cap" width="180px" height="120px"
+					value="@bind(vm.captcha)" />
+			</div>
+			<div align="center">
+				<hlayout>
+					<vlayout>
+						<button iconSclass="z-icon-undo" width="180px"
+							label="Generar captcha"
+							zclass="btn btn-outline-primary btn btn-sm"
+							onClick="@command('actualizarCaptcha', valor=cap)" />
+						<textbox value="@bind(vm.textoCaptcha)"
+							width="180px" disabled="@bind(vm.textoCaptchaControl)"
+							maxlength="5" />
+						<label
+							style="font-family:Trebuchet MS; font-size:12px;color:red;"
+							value="@load(vmsgs['captcha'])" />
+					</vlayout>
+				</hlayout>
+			</div>
+			<div align="center">
+				<hlayout>
+					<a src="/img/regresar.ico" href="/login.zul">
+						Volver atrás
+					</a>
+					<button id="enviar" label="Enviar"
+						iconSclass="z-icon-send" zclass="btn-outline-primary btn btn-sm"
+						onClick="@command('enviarMail')" />
+
+				</hlayout>
+			</div>
+		</vlayout>
+	</window>
+</zk>

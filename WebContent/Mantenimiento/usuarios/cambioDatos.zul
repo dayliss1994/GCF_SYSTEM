@@ -1,0 +1,41 @@
+<?page title="Cambio de contraseña" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winUsuarioEditar" border="none" width="400px"		
+		apply="ec.edu.upse.gcf.editar.UsuarioEditar"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="overlapped">
+		<caption height="20px" style="background:#0489B1;"
+			label="Cambio de contraseña"
+			sclass="p-1 mb text-white font-italic font-weight-bold" />
+		<div>
+			<vlayout>
+				<div align="center">
+					<space spacing="42px" />
+					<label value="Clave nueva :"
+						sclass="font-weight-bold" />
+					<textbox id="claveNueva" type="password" 
+						value="@{winUsuarioEditar$composer.usuario.clave}"/>
+				</div>
+				<div align="center">
+					<space spacing="12px" />
+					<label value="Confirmar clave : "
+						sclass="font-weight-bold" />
+					<textbox id="confirmaClave" type="password" 
+						value="@{winUsuarioEsditar$composer.usuario.clave}"/>
+				</div>
+				<div align="right">
+					<hlayout>
+						<button id="graba" label="Grabar"
+							iconSclass="z-icon-save" disabled="validarClavesIguales"
+							sclass="btn btn-outline-primary btn btn-sm"/>
+						<button id="cancelar" label="Salir"
+							iconSclass="z-icon-sign-out"
+							sclass="btn btn-outline-danger btn btn-sm"/>
+					</hlayout>
+				</div>
+			</vlayout>
+		</div>
+	</window>
+</zk>

@@ -1,0 +1,5 @@
+<?page title="" contentType="text/html;charset=UTF-8"?> 
+<div apply="org.zkoss.bind.BindComposer"
+	 viewModel="@id('vm') @init('ec.edu.upse.gcf.control.Index')"> 
+</div> 
+

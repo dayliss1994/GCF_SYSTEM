@@ -1,0 +1,89 @@
+<?page title="Sanciones Tarjetas" contentType="text/html;charset=UTF-8"?>
+<?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
+<?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
+<zk>
+	<window id="winTarjetajugadorEditar" border="none" width="650px"
+		sclass="p-0 mb-0 bg-info"
+		style="padding: 0 0 0 0;background:#0489B1;" position="center"
+		mode="embedded" apply="org.zkoss.bind.BindComposer"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.TarjetajugadorEditar')">
+		<caption label="Ingrese datos" height="20px"
+			sclass="p-1 text-white font-italic font-weight-bold" />
+		<vlayout>
+			<grid hflex="1" sclass="form-group-row">
+				<columns>
+					<column hflex="min" align="right" />
+					<column hflex="1" align="left" />
+				</columns>
+				<rows>
+					<row>
+						<label value="Partido : "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.partidos)"
+							selectedItem="@bind(vm.tarjetajugador.partido)"
+							value="@load(vm.tarjetajugador.partido.nombrepartido)"
+							placeholder="Seleccione el partido" hflex="1">
+							<template name="model" var="p">
+								<comboitem
+									label="@bind(p.nombrepartido)" value="@load(each)" />
+							</template>
+						</combobox>
+					</row>
+					<row>
+						<label value="Jugador : "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.jugadores)"
+							selectedItem="@bind(vm.tarjetajugador.jugador)"
+							value="@load(vm.tarjetajugador.jugador.nombres)"
+							placeholder="Seleccione el jugador" hflex="1">
+							<template name="model" var="j">
+								<comboitem label="@bind(j.nombres)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</row>
+					<row>
+						<label value="Tarjeta : "
+							sclass="font-weight-bold col-form-label" />
+						<combobox model="@load(vm.tarjetas)"
+							selectedItem="@bind(vm.tarjetajugador.tarjeta)"
+							value="@load(vm.tarjetajugador.tarjeta.descripcion)"
+							placeholder="Seleccione la tarjeta" hflex="1">
+							<template name="model" var="t">
+								<comboitem label="@bind(t.descripcion)"
+									value="@load(each)" />
+							</template>
+						</combobox>
+					</row>
+					<row>
+						<label value="Tiempo : "
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="tiempo"
+							value="@bind(vm.tarjetajugador.tiempo)"
+							constraint="no empty: Ingrese el tiempo que se sacó tarjeta."
+							hflex="1" maxlength="100" />
+					</row>
+					<row>
+						<label value="Motivo Tarjeta : "
+							sclass="font-weight-bold col-form-label" />
+						<textbox id="motivo"
+							value="@bind(vm.tarjetajugador.motivo)"
+							constraint="no empty: Ingrese número de camisa de jugador."
+							hflex="1" maxlength="250" />
+					</row>
+				</rows>
+			</grid>
+			<!-- Botones -->
+			<div>
+				<button id="grabar" label="Grabar"
+					iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
+				<button id="salir" label="Salir"
+					iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('salir')" />
+			</div>
+		</vlayout>
+	</window>
+</zk>
