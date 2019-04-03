@@ -19,8 +19,7 @@
 								<image src="/img/usuario.ico" />
 							</div>
 							<div align="center">
-								<label value="Usuario: "
-									sclass="font-weight-bold" />
+								<label value="Usuario: " sclass="font-weight-bold" />
 								<textbox name="username" width="200px" />
 							</div>
 						</hlayout>
@@ -30,10 +29,8 @@
 							</div>
 							<div align="center">
 								<space spacing="12px" />
-								<label value="Clave: "
-									sclass="font-weight-bold" />
-								<textbox name="password" type="password"
-									width="200px" />
+								<label value="Clave: " sclass="font-weight-bold" />
+								<textbox name="password" type="password" width="200px" />
 							</div>
 						</hlayout>
 					</groupbox>
@@ -43,30 +40,28 @@
 							<button label="Ingresar" type="submit"
 								iconSclass="z-icon-sign-in"
 								sclass="btn btn-outline-primary btn btn-sm" />
-						</div>						
+						</div>
 						<div align="center">
 							<!-- Procesa el login -->
-							<a
-								href="/Mantenimiento/recuperar/recuperar.zul">
+							<a href="/Mantenimiento/recuperar/recuperar.zul">
 								¿Olvidó su contraseña?
 							</a>
 						</div>
 					</groupbox>
-					<!-- Mensaje de login  -->
+					<!-- Mensaje de login -->
 					<div align="center">
-						<html style="color:red"
-							if="${not empty param.login_error}">
+						<html style="color:red" if="${not empty param.login_error}">
 
 							
 							<![CDATA[ Ingreso fallido, intente
 							nuevamente.]]>
-																																										
+
 						</html>
 					</div>
 					<div>
 						<html>
-							<input type="hidden"
-								name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 						</html>
 					</div>
 				</vlayout>

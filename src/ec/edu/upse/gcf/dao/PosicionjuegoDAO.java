@@ -16,4 +16,18 @@ public class PosicionjuegoDAO extends ClaseDAO {
 		retorno = (List<Posicionjuego>) query.getResultList();
 		return retorno;
 	}
+	public List<Posicionjuego> getPosiciones(String value) {
+		List<Posicionjuego> resultado; 
+		String patron = value;
+		if (value == null || value.length() == 0) {
+			patron = "%";
+		}else{
+			patron = "%" + patron.toLowerCase() + "%";
+		}
+		Query query = getEntityManager().createNamedQuery("Posicionjuego.buscarPorPatron");
+		query.setHint("javax.persistence.cache.storeMode", "REFRESH");
+		query.setParameter("patron", patron);
+		resultado = (List<Posicionjuego>) query.getResultList();		
+		return resultado;
+	}
 }

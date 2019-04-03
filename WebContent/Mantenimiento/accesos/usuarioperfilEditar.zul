@@ -20,7 +20,7 @@
 					<row>
 						<label value="Usuario:" />
 						<combobox model="@load(vm.usuarios)"
-							placeholder="Seleccione Usuario" 
+							style="text-transform:uppercase" placeholder="Seleccione Usuario"
 							selectedItem="@bind(vm.usuarioperfil.usuario)"
 							value="@load(vm.usuarioperfil.usuario.usuario)" width="300px">
 						</combobox>
@@ -28,7 +28,7 @@
 					<row>
 						<label value="Perfil" />
 						<combobox model="@load(vm.perfiles)"
-							placeholder="Seleccione perfil"
+							style="text-transform:uppercase" placeholder="Seleccione perfil"
 							selectedItem="@bind(vm.usuarioperfil.perfil)"
 							value="@load(vm.usuarioperfil.perfil.nombre)" width="300px">
 						</combobox>
@@ -37,9 +37,11 @@
 			</grid>
 			<hlayout>
 				<button label="Grabar" iconSclass="z-icon-save"
-					zclass="btn btn-outline-primary btn btn-sm" onClick="@command('grabar')" />
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('grabar')" />
 				<button label="Salir" iconSclass="z-icon-sign-out"
-					zclass="btn btn-outline-primary btn btn-sm" onClick="@command('salir')" />
+					zclass="btn btn-outline-primary btn btn-sm"
+					onClick="@command('salir')" />
 			</hlayout>
 		</vlayout>
 	</window>

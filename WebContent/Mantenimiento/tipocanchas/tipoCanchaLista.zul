@@ -3,27 +3,34 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winListaTipoCanchas" hflex="1" vflex="1" border="none"
-	        apply="ec.edu.upse.gcf.listas.TipoCanchaLista" 
-	        style="padding: 0 0 0 0;background:#FFFFFF">	
+	<window id="winListaTipoCanchas" hflex="1" vflex="1"
+		border="none" apply="ec.edu.upse.gcf.listas.TipoCanchaLista"
+		style="padding: 0 0 0 0;background:#FFFFFF">
 		<vlayout vflex="1">
 			<div>
-				<button id="btnNuevo"    label="Nuevo"    iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn btn-sm" />
-				<button id="btnEditar"   label="Editar"   iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn btn-sm" />
-				<button id="btnEliminar" label="Eliminar" iconSclass="z-icon-trash-o" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnNuevo" label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnEditar" label="Editar"
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnEliminar" label="Eliminar"
+					iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm" />
 			</div>
 			<hlayout>
-				<textbox id="txtBuscar" hflex="1" />
-				<button id="btnBuscar" label="Buscar!" iconSclass="z-icon-search"  
-				zclass="btn btn-outline-primary btn btn-sm" />
+				<textbox id="txtBuscar" hflex="1"
+					style="text-transform:uppercase" />
+				<button id="btnBuscar" label="Buscar!"
+					iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm" />
 			</hlayout>
 			<hlayout vflex="1" hflex="1">
 				<listbox id="lstTipoCanchas"
-				         model="@{winListaTipoCanchas$composer.tipoCanchas}"
-				         selectedItem="@{winListaTipoCanchas$composer.tipocanchaSeleccionada}" 
-						 hflex="1" vflex="1">
+					model="@{winListaTipoCanchas$composer.tipoCanchas}"
+					selectedItem="@{winListaTipoCanchas$composer.tipocanchaSeleccionada}"
+					hflex="1" vflex="1">
 					<listhead>
-						<listheader label="Descripcion" />				
+						<listheader label="Descripcion" />
 					</listhead>
 					<template name="model">
 						<listitem>

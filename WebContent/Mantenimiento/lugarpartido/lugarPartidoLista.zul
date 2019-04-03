@@ -4,7 +4,7 @@
 <zk>
 	<window apply="org.zkoss.bind.BindComposer" border="none"
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.listas.LugarPartidoLista')"
-		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">		
+		hflex="1" vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;">
 		<vlayout vflex="1">
 			<div>
 				<button label="Nuevo" iconSclass="z-icon-plus"
@@ -18,15 +18,16 @@
 					onClick="@command('eliminar')" />
 			</div>
 			<hlayout>
-				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
 				<button label="Buscar!" iconSclass="z-icon-search"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('buscar')" />
 			</hlayout>
 			<hlayout vflex="1" hflex="1">
 				<listbox model="@load(vm.lugarpartido)" autopaging="true"
-					mold="paging" selectedItem="@bind(vm.lugarpartidoSeleccionado)" hflex="1"
-					vflex="1">
+					mold="paging" selectedItem="@bind(vm.lugarpartidoSeleccionado)"
+					hflex="1" vflex="1">
 					<listhead>
 						<listheader label="Nombre Cancha" />
 						<listheader label="Tipo Cancha" />

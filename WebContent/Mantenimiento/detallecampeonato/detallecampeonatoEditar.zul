@@ -2,7 +2,8 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winDetalleCampeonatoEditar" border="none" width="550px"
+	<window id="winDetalleCampeonatoEditar" border="none"
+		width="550px"
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.DetalleCampeonatoEditar')"
 		style="padding: 0 0 0 0;background:#0489B1;" position="center"
 		mode="embedded" apply="org.zkoss.bind.BindComposer">
@@ -36,19 +37,18 @@
 							value="@load(vm.detallecampeonato.categoria.nombre)"
 							placeholder="Seleccione una opción" hflex="1">
 							<template name="model" var="c">
-								<comboitem label="@bind(c.nombre)"
-									value="@load(each)" />
+								<comboitem label="@bind(c.nombre)" value="@load(each)" />
 							</template>
 						</combobox>
 					</row>
 
-				</rows>				
+				</rows>
 			</grid>
 			<hlayout vflex="1">
-				<listbox id="listBox" model="@load(vm.equipos)" mold="paging"
-					autopaging="true"
-					selectedItem="@bind(vm.equipoSeleccionado)"			
-					multiple="true" checkmark="true" height="310px">
+				<listbox id="listBox" model="@load(vm.equipos)"
+					mold="paging" autopaging="true"
+					selectedItem="@bind(vm.equipoSeleccionado)" multiple="true"
+					checkmark="true" height="310px">
 					<listhead>
 						<listheader label="Equipos" />
 					</listhead>
@@ -77,12 +77,10 @@
 			</grid>
 			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
 			<hlayout>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</hlayout>

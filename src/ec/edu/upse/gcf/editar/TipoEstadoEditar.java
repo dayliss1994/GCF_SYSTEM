@@ -16,7 +16,6 @@ import org.zkoss.zul.Window;
 import ec.edu.upse.gcf.dao.TipoestadoDAO;
 import ec.edu.upse.gcf.modelo.Tipoestado;
 
-
 public class TipoEstadoEditar {
 	// Enlaza a la ventana para poderla cerrar
 	@Wire
@@ -30,11 +29,7 @@ public class TipoEstadoEditar {
 	
 	@AfterCompose
 	public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
-
-		// Permite enlazar los componentes que se asocian con la anotacion @Wire
 		Selectors.wireComponents(view, this, false);
-
-	    // Recupera el objeto pasado como parametro. 
 		tipoestado = (Tipoestado) Executions.getCurrent().getArg().get("Tipoestado");	
 	}
 
@@ -55,52 +50,35 @@ public class TipoEstadoEditar {
 	@Command
 	public void grabar(){			
 		try {
-			if (isValidarDatos() == false) {
-				Clients.showNotification("Verifique que los campos esten llenos.!!");
-			}else {
-				// Inicia la transaccion
+			if (isValidarDatos() == true) {
 				tipoestadoDao.getEntityManager().getTransaction().begin();
-				
-				// Almacena los datos.
-				// Si es nuevo sa el metodo "persist" de lo contrario usa el metodo "merge"
 				if (tipoestado.getIdTipoestado() == 0) {
 					tipoestadoDao.getEntityManager().persist(tipoestado);
 				}else{
 					tipoestado = (Tipoestado) tipoestadoDao.getEntityManager().merge(tipoestado);
 				}
-				
-				// Cierra la transaccion.
-				tipoestadoDao.getEntityManager().getTransaction().commit();
-				
-				Clients.showNotification("Proceso Ejecutado con exito.");
-				
-				// Actualiza la lista
+				tipoestadoDao.getEntityManager().getTransaction().commit();				
+				Clients.showNotification("Proceso Ejecutado con exito.");		
 				BindUtils.postGlobalCommand(null, null, "TipoestadoLista.buscar", null);
-				
-				// Cierra la ventana
-				salir();
+				salir();				
+			}else {
+				Clients.showNotification("Verifique que los campos esten llenos.!!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
-			// Si hay error, reversa la transaccion.
 			tipoestadoDao.getEntityManager().getTransaction().rollback();
-		}
-		
+		}		
 	}
 
 	@Command
 	public void salir(){
 		winTipoEstadoEditar.detach();
 	}
-
 	public Tipoestado getTipoestado() {
 		return tipoestado;
 	}
-
 	public void setTipoestado(Tipoestado tipoestado) {
 		this.tipoestado = tipoestado;
-	}
-	
+	}	
 }
 	

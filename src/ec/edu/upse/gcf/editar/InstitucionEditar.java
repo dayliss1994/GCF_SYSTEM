@@ -85,7 +85,7 @@ public class InstitucionEditar {
 				return resultado;
 			}
 			if(fundacion.getText() == null) {
-				Clients.showNotification("Por favor la fecha de fundación.!!");
+				Clients.showNotification("Por favor ingrese la fecha de fundación.!!");
 				fundacion.focus();
 				return resultado;
 			}
@@ -132,34 +132,21 @@ public class InstitucionEditar {
 		try {
 			System.out.println("entra");
 			if (isValidarDatos() == true) {
-				// Inicia la transaccion
 				institucionDao.getEntityManager().getTransaction().begin();
-
-				// Almacena los datos.
-				// Si es nuevo sa el metodo "persist" de lo contrario usa el metodo "merge"
 				if (institucion.getIdInstitucion() == 0) {
 					institucionDao.getEntityManager().persist(institucion);
-					
 				}else{
 					institucion = (Institucion) institucionDao.getEntityManager().merge(institucion);
 				}
-
-				// Cierra la transaccion.
 				institucionDao.getEntityManager().getTransaction().commit();
-
 				Clients.showNotification("Proceso Ejecutado con exito.");			
-				// Actualiza la lista
 				BindUtils.postGlobalCommand(null, null, "Institucion.buscarPorPatron", null);
-
-				//jugadorLista.buscar();
-				// Cierra la ventana
 				salir();
 			}else {
 				Clients.showNotification("Verifique que los campos esten llenos.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			// Si hay error, reversa la transaccion.
 			institucionDao.getEntityManager().getTransaction().rollback();
 		}		
 

@@ -13,8 +13,8 @@
 			<toolbar>
 				<toolbarbutton label="Nuevo" iconSclass="z-icon-plus"
 					onClick="@command('nuevo')" />
-				<toolbarbutton label="Editar" iconSclass="z-icon-pencil"
-					onClick="@command('editar')" />
+				<toolbarbutton label="Editar"
+					iconSclass="z-icon-pencil" onClick="@command('editar')" />
 				<toolbarbutton label="Eliminar"
 					iconSclass="z-icon-trash-o" onClick="@command('eliminar')" />
 			</toolbar>
@@ -30,12 +30,12 @@
 					<listhead>
 						<listheader label="Opción" />
 						<listheader label="Perfil" />
-						
+
 					</listhead>
 					<template name="model">
 						<listitem>
 							<listcell label="@load(each.opcion.titulo)" />
-							<listcell label="@load(each.perfil.nombre)" />							
+							<listcell label="@load(each.perfil.nombre)" />
 						</listitem>
 					</template>
 				</listbox>

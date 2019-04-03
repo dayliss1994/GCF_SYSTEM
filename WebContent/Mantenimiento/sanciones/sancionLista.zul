@@ -30,7 +30,7 @@
 			<hlayout vflex="1" hflex="1">
 				<listbox model="@load(vm.tarjetajugadores)"
 					autopaging="true" mold="paging"
-					selectedItem="@bind(vm.tarjetajugadorSeleccionada)" vflex="1">					
+					selectedItem="@bind(vm.tarjetajugadorSeleccionada)" vflex="1">
 					<listhead>
 						<listheader label="Partido" />
 						<listheader label="Jugador" />
@@ -44,7 +44,7 @@
 							<listcell label="@load(each.jugador.nombres)" />
 							<listcell label="@load(each.tarjeta.descripcion)" />
 							<listcell label="@load(each.tiempo)" />
-							<listcell label="@load(each.motivo)" />							
+							<listcell label="@load(each.motivo)" />
 						</listitem>
 					</template>
 				</listbox>

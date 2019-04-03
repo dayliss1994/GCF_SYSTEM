@@ -35,38 +35,34 @@
 									<row>
 										<label value="Calendario : "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.calendarios)"
+										<combobox model="@load(vm.calendarios)"
 											selectedItem="@bind(vm.partido.id_calendario)"
 											value="@load(vm.partido.id_calendario.fecha)"
 											placeholder="Seleccione una fecha" hflex="1">
-											<template name="model"
-												var="c">
-												<comboitem
-													label="@bind(c.fecha)" value="@load(each)" />
+											<template name="model" var="c">
+												<comboitem label="@bind(c.fecha)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
 									<row>
 										<label value="Estado : "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.tipoestados)"
+										<combobox model="@load(vm.tipoestados)"
 											selectedItem="@bind(vm.partido.tipoestado)"
 											value="@load(vm.partido.tipoestado.descripcion)"
 											placeholder="Seleccione una estado" hflex="1">
-											<template name="model"
-												var="e">
-												<comboitem
-													label="@bind(e.descripcion)" value="@load(each)" />
+											<template name="model" var="e">
+												<comboitem label="@bind(e.descripcion)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
 									<row>
 										<label value="Fecha : "
 											sclass="font-weight-bold col-form-label" />
-										<datebox id="fecha"
-											value="@bind(vm.partido.fecha)" hflex="1" />
+										<datebox id="fecha" value="@bind(vm.partido.fecha)"
+											hflex="1" />
 									</row>
 								</rows>
 							</grid>
@@ -83,15 +79,13 @@
 									<row>
 										<label value="Equipo Ganador : "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.equipos)"
+										<combobox model="@load(vm.equipos)"
 											selectedItem="@bind(vm.partido.equipoganador)"
 											value="@load(vm.partido.equipoganador.nombre)"
 											placeholder="Seleccione un equipo" hflex="1">
-											<template name="model"
-												var="e">
-												<comboitem
-													label="@bind(e.nombre)" value="@load(each)" />
+											<template name="model" var="e">
+												<comboitem label="@bind(e.nombre)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
@@ -104,18 +98,15 @@
 											maxlength="255" />
 									</row>
 									<row>
-										<label
-											value="Equipo Perdedor : "
+										<label value="Equipo Perdedor : "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.equipos)"
+										<combobox model="@load(vm.equipos)"
 											selectedItem="@bind(vm.partido.equiperdedor)"
 											value="@load(vm.partido.equiperdedor.nombre)"
 											placeholder="Seleccione un equipo" hflex="1">
-											<template name="model"
-												var="e">
-												<comboitem
-													label="@bind(e.nombre)" value="@load(each)" />
+											<template name="model" var="e">
+												<comboitem label="@bind(e.nombre)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
@@ -148,8 +139,7 @@
 											maxlength="255" />
 									</row>
 									<row>
-										<label
-											value="Tiempo adicional : "
+										<label value="Tiempo adicional : "
 											sclass="font-weight-bold col-form-label" />
 										<textbox id="adicional"
 											value="@bind(vm.partido.tiempoadicional)" hflex="1"
@@ -162,8 +152,7 @@
 										<textbox id="observacion"
 											value="@bind(vm.partido.observacion)" hflex="1" height="70px"
 											constraint="no empty: Por favor ingrese la observación"
-											multiline="true"
-											maxlength="255" />
+											multiline="true" maxlength="255" />
 									</row>
 								</rows>
 							</grid>
@@ -173,12 +162,10 @@
 			</tabbox>
 			<!-- Botones -->
 			<div>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</div>

@@ -3,12 +3,11 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winTarjetaEditar" border="none" width="300px" height="230px"
-		apply="ec.edu.upse.gcf.editar.TarjetaEditar"
-		style=" padding: 0 0 0 0;background:#0489B1"
-		position="center" mode="overlapped" >
-		<caption height="20px"
-			style="background:#0489B1"
+	<window id="winTarjetaEditar" border="none" width="300px"
+		height="230px" apply="ec.edu.upse.gcf.editar.TarjetaEditar"
+		style=" padding: 0 0 0 0;background:#0489B1" position="center"
+		mode="overlapped">
+		<caption height="20px" style="background:#0489B1"
 			sclass="p-1 mb text-white font-italic font-weight-bold"
 			label="Tarjetas" />
 		<vlayout>
@@ -19,30 +18,25 @@
 				</columns>
 				<rows>
 					<row>
-						<label value="Tarjeta: " />
-						<textbox id="descripción"
+						<label value="Tarjeta: * " />
+						<textbox id="descripción" style="text-transform:uppercase"
 							value="@{winTarjetaEditar$composer.tarjeta.descripcion}"
-							width="150px"
-							constraint="no empty: Por favor ingrese el color de tarjeta."
-							maxlength="20" />
+							width="150px" maxlength="20" />
 					</row>
 					<row>
 						<label value="Valor: " />
-							<textbox id="valor"
-								value="@{winTarjetaEditar$composer.tarjeta.valor}" 
-								width="150px"
-								constraint="no empty: Por favor ingrese el valor de la tarjeta."
-								maxlength="5" />						
+						<textbox id="valor" style="text-transform:uppercase"
+							value="@{winTarjetaEditar$composer.tarjeta.valor}" width="150px"
+							maxlength="5" />
 					</row>
 				</rows>
 			</grid>
-
 			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
 			<hlayout>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save" zclass="btn btn-outline-primary btn btn-sm" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
+					zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
+					zclass="btn btn-outline-primary btn btn-sm" />
 			</hlayout>
 		</vlayout>
 	</window>

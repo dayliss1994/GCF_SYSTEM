@@ -3,13 +3,12 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winListaCategorias" hflex="1" vflex="1" border="none"
-		style="padding: 0 0 0 0;background:#FFFFFF;"
+	<window id="winListaCategorias" hflex="1" vflex="1"
+		border="none" style="padding: 0 0 0 0;background:#FFFFFF;"
 		apply="ec.edu.upse.gcf.listas.CategoriaLista">
 		<vlayout vflex="1">
 			<div>
-				<button id="btnNuevo" label="Nuevo"
-					iconSclass="z-icon-plus"
+				<button id="btnNuevo" label="Nuevo" iconSclass="z-icon-plus"
 					zclass="btn btn-outline-primary btn btn-sm" />
 				<button id="btnEditar" label="Editar"
 					iconSclass="z-icon-pencil"
@@ -19,7 +18,8 @@
 					zclass="btn btn-outline-primary btn btn-sm" />
 			</div>
 			<hlayout>
-				<textbox id="txtBuscar" hflex="1" />
+				<textbox id="txtBuscar" hflex="1"
+					style="text-transform:uppercase" />
 				<button id="btnBuscar" label="Buscar!"
 					iconSclass="z-icon-search"
 					zclass="btn btn-outline-primary btn btn-sm" />

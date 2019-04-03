@@ -2,8 +2,8 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
-		style="padding: 0 0 0 0;background:#FFFFFF;"
+	<window id="winOpcionPerfilEditar" border="none" hflex="1"
+		vflex="1" style="padding: 0 0 0 0;background:#FFFFFF;"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.OpcionPerfilEditar')">
 		<caption label="Seleccione permisos a los perfiles"
@@ -19,28 +19,24 @@
 					<row>
 						<label value="Perfil:" />
 						<combobox model="@load(vm.perfiles)"
-							placeholder="Seleccione perfil"							
+							placeholder="Seleccione perfil"
 							selectedItem="@bind(vm.perfilseleccionado)"
 							value="@load(vm.perfilseleccionado.nombre)"
-							onSelect="@command('listaropciones')"
-							width="350px">
+							onSelect="@command('listaropciones')" width="350px">
 							<template name="model">
-	    						<comboitem label="@load(each.nombre)" />
-	    					</template>
+								<comboitem label="@load(each.nombre)" />
+							</template>
 						</combobox>
 					</row>
 				</rows>
 			</grid>
 			<div hflex="1" vflex="1">
-				<tree id="menu" 
-					  multiple="true"
-					  checkmark="true"	
-					  selectedItems="@bind(vm.perfilseleccionado)"
-					  hflex="1"
-					  vflex="1" />
-			</div>	
+				<tree id="menu" multiple="true" checkmark="true"
+					selectedItems="@bind(vm.perfilseleccionado)" hflex="1" vflex="1" />
+			</div>
 			<button label="Grabar" iconSclass="z-icon-save"
-					sclass="btn btn-outline-primary btn btn-sm" onClick="@command('grabar')" />
+				sclass="btn btn-outline-primary btn btn-sm"
+				onClick="@command('grabar')" />
 		</vlayout>
 	</window>
 </zk>

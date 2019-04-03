@@ -1,8 +1,12 @@
 package ec.edu.upse.gcf.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 
 public class ClaseDAO {
 
@@ -23,5 +27,27 @@ public class ClaseDAO {
 	        em = emf.createEntityManager();
 	    }
 	    return em; 
-	}  
+	}
+	
+	public Connection abreConexion() {
+		EntityManager entityManager; 
+		entityManager = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME).createEntityManager();
+		Connection connection = null;
+		entityManager.getTransaction().begin();
+		connection = entityManager.unwrap(Connection.class);
+		return connection;
+	}
+
+	/**
+	 * Cierra una conexion JDBC.
+	 * @param cn
+	 */
+	public void cierraConexion(Connection cn) {
+		try {
+			cn.close();
+			cn = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

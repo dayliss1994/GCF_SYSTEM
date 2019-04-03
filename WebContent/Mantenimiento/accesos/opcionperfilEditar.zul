@@ -2,8 +2,8 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winOpcionPerfilEditar" border="none" hflex="1" vflex="1"
-		style="padding: 0 0 0 0;background:#0B610B;"
+	<window id="winOpcionPerfilEditar" border="none" hflex="1"
+		vflex="1" style="padding: 0 0 0 0;background:#0B610B;"
 		apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.OpcionPerfilEditar')">
 		<caption src="/img/opcperfil.ico" label="Ingrese datos"
@@ -29,10 +29,8 @@
 				</rows>
 			</grid>
 			<vlayout>
-				<listbox model="@load(vm.opcionesAsignadas)" 
-				multiple="true"
-				checkmark="true"
-					autopaging="true" mold="paging" height="375px">
+				<listbox model="@load(vm.opcionesAsignadas)" multiple="true"
+					checkmark="true" autopaging="true" mold="paging" height="375px">
 					<listhead>
 						<listheader label="Opciones" />
 					</listhead>

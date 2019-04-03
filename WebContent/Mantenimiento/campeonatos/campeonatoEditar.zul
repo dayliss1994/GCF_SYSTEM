@@ -3,7 +3,7 @@
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
 	<window id="winCampeonatoEditar" border="none" width="550px"
-		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CampeonatoEditar')"	
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CampeonatoEditar')"
 		style="padding: 0 0 0 0;background:#0489B1;" position="center"
 		mode="embedded" apply="org.zkoss.bind.BindComposer">
 		<caption label="Ingrese datos" height="20px"
@@ -18,15 +18,13 @@
 					<row>
 						<label value="Tipo Campeonato : * "
 							sclass="font-weight-bold col-form-label" />
-						<combobox
-							model="@load(vm.tipoCampeonatos)"
+						<combobox model="@load(vm.tipoCampeonatos)"
 							selectedItem="@bind(vm.campeonato.tipoCampeonato)"
 							value="@load(vm.campeonato.tipoCampeonato.descripcion)"
-							placeholder="Seleccione tipo campeonato"
-							hflex="1">
+							placeholder="Seleccione tipo campeonato" hflex="1">
 							<template name="model" var="c">
 								<comboitem label="@bind(c.descripcion)"
-								value="@load(each)" />
+									value="@load(each)" />
 							</template>
 						</combobox>
 					</row>
@@ -42,25 +40,23 @@
 						<label value="Fecha inicio : * "
 							sclass="font-weight-bold col-form-label" />
 						<datebox id="fechaInicio" hflex="1"
-							value="@bind(vm.campeonato.fechaInicio)"/>
+							value="@bind(vm.campeonato.fechaInicio)" />
 					</row>
 					<row>
 						<label value="Fecha fin : "
 							sclass="font-weight-bold col-form-label" />
-							<datebox id="fechaFin" hflex="1"
-								value="@bind(vm.campeonato.fechaFin)"/>
+						<datebox id="fechaFin" hflex="1"
+							value="@bind(vm.campeonato.fechaFin)" />
 					</row>
 				</rows>
 			</grid>
 
 			<!-- Los iconos listados con iconSclass son de: http://fontawesome.io/icons/ -->
 			<hlayout>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</hlayout>

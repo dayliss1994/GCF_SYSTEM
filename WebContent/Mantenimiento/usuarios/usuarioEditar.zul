@@ -19,7 +19,7 @@
 						<label value="Cédula : * " />
 						<textbox id="cedula" xmlns:w="client"
 							value="@{winUsuarioEditar$composer.usuario.cedula}" width="200px"
-							constraint="no empty: Debe ingresar cedula" maxlength="10">
+							maxlength="10">
 							<attribute w:name="doKeyPress_">
 								function(evt){ if(this.getValue().length
 								> 0 ){ if (!this._shallIgnore(evt,
@@ -32,22 +32,19 @@
 					</row>
 					<row>
 						<label value="Nombres : * " />
-						<textbox id="nombres" xmlns:w="client"
+						<textbox id="nombres" style="text-transform:uppercase"
 							value="@{winUsuarioEditar$composer.usuario.nombres}"
-							width="250px"
-							constraint="no empty: Por favor ingrese su nombre completo."
-							maxlength="255" />
+							width="250px" maxlength="255" />
 					</row>
 					<row>
 						<label value="Apellidos : * " />
-						<textbox id="apellidos"
+						<textbox id="apellidos" style="text-transform:uppercase"
 							value="@{winUsuarioEditar$composer.usuario.apellidos}"
-							width="250px" constraint="no empty: Debe ingresar los apellidos."
-							maxlength="255" />
+							width="250px" maxlength="255" />
 					</row>
 					<row>
 						<label value="Dirección : " />
-						<textbox id="direccion"
+						<textbox id="direccion" style="text-transform:uppercase"
 							value="@{winUsuarioEditar$composer.usuario.direccion}"
 							width="250px" maxlength="255" />
 					</row>
@@ -68,32 +65,32 @@
 					</row>
 					<row>
 						<label value="Correo : " />
-						<textbox id="correo"
+						<textbox id="correo" xmlns:w="client"
+							style="text-transform:lowercase"
 							value="@{winUsuarioEditar$composer.usuario.correo}" width="250px"
-							maxlength="255" />
+							maxlength="255">
+
+						</textbox>
 					</row>
 					<row>
 						<label value="Usuario : * " />
 						<textbox id="nombUsuario"
+							style="text-transform:lowerrcase"
 							value="@{winUsuarioEditar$composer.usuario.usuario}"
-							width="250px"
-							constraint="no empty: Debe ingresar su nuevo usuario de identificación."
-							maxlength="255" />
+							width="250px" maxlength="255" />
 					</row>
 					<row>
 						<label value="Clave : * " />
 						<textbox id="clave" type="password"
 							value="@{winUsuarioEditar$composer.usuario.clave}" width="250px"
-							constraint="no empty: Debe ingresar la nueva clave de acceso."
 							maxlength="255" />
 					</row>
 				</rows>
 			</grid>
 			<hlayout>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save" sclass="btn btn-outline-primary btn btn-sm" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
+					sclass="btn btn-outline-primary btn btn-sm" />
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					sclass="btn btn-outline-primary btn btn-sm" />
 			</hlayout>
 		</vlayout>

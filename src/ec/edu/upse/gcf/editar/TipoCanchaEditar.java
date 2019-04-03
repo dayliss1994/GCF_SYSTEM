@@ -6,6 +6,7 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import ec.edu.upse.gcf.dao.TipocanchaDAO;
@@ -18,6 +19,7 @@ public class TipoCanchaEditar extends SelectorComposer<Component> {
 	// Enlaza a la ventana para poderla cerrar
 	@Wire
 	private Window winTipoCanchaEditar;
+	@Wire private Textbox descripcion;
 
 	private TipoCanchaLista tipoCanchaLista; 
 	private TipocanchaDAO tipoCanchaDao = new TipocanchaDAO();
@@ -25,11 +27,7 @@ public class TipoCanchaEditar extends SelectorComposer<Component> {
 
 	public void doAfterCompose(Component comp) throws Exception{
 		super.doAfterCompose(comp);
-
-		// Recupera la ventana padre.
 		tipoCanchaLista = (TipoCanchaLista)Executions.getCurrent().getArg().get("VentanaPadre");
-
-		// Recupera el objeto pasado como parametro. Si no lo recibe, crea uno
 		tipoCancha = null; 
 		if (Executions.getCurrent().getArg().get("TipoCancha") != null) {
 			tipoCancha = (Tipocancha) Executions.getCurrent().getArg().get("TipoCancha");
@@ -37,62 +35,50 @@ public class TipoCanchaEditar extends SelectorComposer<Component> {
 			tipoCancha = new Tipocancha(); 
 		}
 	}
-
-	/**
-	 * Escucha el evento "onClick" del objeto "grabar"
-	 */
-	@Listen("onClick=#grabar")
-	public void grabar(){
-		System.out.println("entra grabando");
+	
+	public boolean isValidarDatos() {
 		try {
-			// Inicia la transaccion
-			tipoCanchaDao.getEntityManager().getTransaction().begin();
-
-			// Almacena los datos.
-			// Si es nuevo utiliza el metodo "persist" de lo contrario usa el metodo "merge"
-			if (tipoCancha.getId_tipoC() == null) {
-				tipoCanchaDao.getEntityManager().persist(tipoCancha);
-			}else{
-				tipoCancha = (Tipocancha) tipoCanchaDao.getEntityManager().merge(tipoCancha);
-			}
-
-			// Cierra la transaccion.
-			tipoCanchaDao.getEntityManager().getTransaction().commit();
-
-			
-			Clients.showNotification("Proceso Ejecutado con exito.");
-
-			// Actualiza la lista
-			tipoCanchaLista.buscar();
-			// Cierra la ventana
-			salir();
-
+			Boolean resultado = true;			
+			if(descripcion.getText() == null) {
+				Clients.showNotification("Por favor ingrese la descripción.!!");
+				descripcion.focus();
+				return resultado;
+			}	
+			return resultado;
 		} catch (Exception e) {
 			e.printStackTrace();
-
-			// Si hay error, reversa la transaccion.
+			return false;
+		}
+	}
+	
+	@Listen("onClick=#grabar")
+	public void grabar(){
+		try {
+			if (isValidarDatos() == true) {
+				tipoCanchaDao.getEntityManager().getTransaction().begin();
+				if (tipoCancha.getId_tipoC() == null) {
+					tipoCanchaDao.getEntityManager().persist(tipoCancha);
+				}else{
+					tipoCancha = (Tipocancha) tipoCanchaDao.getEntityManager().merge(tipoCancha);
+				}
+				tipoCanchaDao.getEntityManager().getTransaction().commit();
+				Clients.showNotification("Proceso Ejecutado con exito.");
+				tipoCanchaLista.buscar();
+				salir();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 			tipoCanchaDao.getEntityManager().getTransaction().rollback();
 		}
 	}
 
-	/**
-	 * Escucha el evento "onClick" del objeto "salir"
-	 */
 	@Listen("onClick=#salir")
 	public void salir(){
 		winTipoCanchaEditar.detach();
 	}
-
-	/**
-	 * GETTER AND SETTER
-	 * @return
-	 */
-
 	public Tipocancha getTipoCancha() {
 		return tipoCancha;
 	}
-
-
 	public void setTipoCancha(Tipocancha tipoCancha) {
 		this.tipoCancha = tipoCancha;
 	}

@@ -40,9 +40,8 @@ public class Jugador implements Serializable {
 	private int idJugador;
 
 	private String apellidos;
-
+	private String genero;
 	private int edad;
-
 	private String estado;
 
 	@Temporal(TemporalType.DATE)
@@ -159,7 +158,15 @@ public class Jugador implements Serializable {
 
 	public void setPosicionjuego(Posicionjuego posicionjuego) {
 		this.posicionjuego = posicionjuego;
+	}	
+	public String getGenero() {
+		return genero;
 	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
 	@Override
 	public String toString() {
 		return this.nombres;

@@ -19,24 +19,22 @@
 						<label value="Foto:"
 							sclass="font-weight-bold col-form-label" />
 						<div align="left">
-							<image width="125px"
-								content="@load(vm.imagenEscudo)"
+							<image width="125px" content="@load(vm.imagenEscudo)"
 								style="border:1px #cccccc solid; " />
 							<separator spacing="3px" />
 							<div align="left">
-								<button id="btnUpload" label="Cargar..."
-									upload="true" width="125px"
-									onUpload="@command('subir', upEvent=event)"
+								<button id="btnUpload" label="Cargar..." upload="true"
+									width="125px" onUpload="@command('subir', upEvent=event)"
 									iconSclass="z-icon-upload"
 									zclass="btn btn-outline-primary btn btn-sm" />
 							</div>
 						</div>
-					</row>					
+					</row>
 					<row>
 						<label value="Nombre Equipo : "
 							sclass="font-weight-bold col-form-label" />
-						<textbox id="nombre"
-							value="@bind(vm.equipo.nombre)" hflex="1"
+						<textbox id="nombre" value="@bind(vm.equipo.nombre)"
+							hflex="1"
 							constraint="no empty: Por favor ingrese el nombre del equipo"
 							maxlength="255" />
 					</row>
@@ -51,12 +49,10 @@
 				</rows>
 			</grid>
 			<div>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</div>

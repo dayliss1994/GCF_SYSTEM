@@ -14,8 +14,7 @@
 					<div>
 						<!-- combo campeonato -->
 						<label value="Campeonato : " />
-						<combobox hflex="1"
-							model="@load(vm.listaCampeonato)"
+						<combobox hflex="1" model="@load(vm.listaCampeonato)"
 							selectedItem="@bind(vm.campeonatoSeleccionado)"
 							onSelect="@command('listarCategoriaAsignada')"
 							placeholder="Seleccione">
@@ -30,15 +29,13 @@
 							selectedItem="@bind(vm.lugarSeleccionado)"
 							model="@load(vm.lugarEquipo)" placeholder="Seleccione">
 							<template name="model" var="l">
-								<comboitem
-									label="@bind(l.nombreCancha)" />
+								<comboitem label="@bind(l.nombreCancha)" />
 							</template>
 						</combobox>
 
 						<!-- combo modalidad -->
 						<label value="Modalidad : " />
-						<combobox width="210px"
-							model="@load(vm.listaModalidad)"
+						<combobox width="210px" model="@load(vm.listaModalidad)"
 							selectedItem="@bind(vm.modalidadSeleccionada)"
 							placeholder="Seleccione">
 							<template name="model" var="m">
@@ -52,21 +49,19 @@
 				<button label="Generar" onClick="@command('generar')"
 					iconSclass="z-icon-load"
 					zclass="btn btn-outline-primary btn btn-sm" />
-				<button label="Guardar" onClick=""
-					iconSclass="z-icon-save"
+				<button label="Guardar" onClick="" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm" />
-				<button label="Imprimir" onClick=""
-					iconSclass="z-icon-print"
+				<button label="Imprimir" onClick="" iconSclass="z-icon-print"
 					zclass="btn btn-outline-primary btn btn-sm" />
 			</hlayout>
 			<!-- area de tabs -->
 			<tabbox vflex="1" hflex="1">
 				<tabs>
 					<!-- primer tab -->
-					<tab label="Equipo"/>
+					<tab label="Equipo" />
 
 					<!-- segundo tab -->
-					<tab label="Calendario"/>
+					<tab label="Calendario" />
 				</tabs>
 				<tabpanels>
 					<!-- contenido del primer tab -->
@@ -75,15 +70,15 @@
 							mold="paging" model="@load(vm.detalleCampeonato)"
 							emptyMessage="No se encontro resultado!">
 							<listhead>
-								<listheader label="Categoria" width="280px" align="center" height="25px"/>
-								<listheader label="Equipo" align="center" height="25px"/>
+								<listheader label="Categoria" width="280px"
+									align="center" height="25px" />
+								<listheader label="Equipo" align="center"
+									height="25px" />
 							</listhead>
 							<template name="model" var="d">
 								<listitem>
-									<listcell
-										label="@bind(d.categoria.nombre)" />
-									<listcell
-										label="@bind(d.equipo.nombre)" />
+									<listcell label="@bind(d.categoria.nombre)" />
+									<listcell label="@bind(d.equipo.nombre)" />
 								</listitem>
 							</template>
 						</listbox>
@@ -91,9 +86,8 @@
 					<!-- contenido del segundo tab -->
 					<tabpanel>
 						<!-- etiqueta del calendario -->
-						<calendars id="calendars"
-							firstDayOfWeek="Sunday" mold="default" readonly="true"
-							height="100%" />
+						<calendars id="calendars" firstDayOfWeek="Sunday"
+							mold="default" readonly="true" height="100%" />
 					</tabpanel>
 				</tabpanels>
 			</tabbox>

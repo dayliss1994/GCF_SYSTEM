@@ -12,20 +12,15 @@ public class JugadorDAO extends ClaseDAO {
 	public List<Jugador> getJugadores(String value) {
 		List<Jugador> resultado; 
 		String patron = value;
-
 		if (value == null || value.length() == 0) {
 			patron = "%";
 		}else{
 			patron = "%" + patron.toLowerCase() + "%";
 		}
 		Query query = getEntityManager().createNamedQuery("Jugadores.buscarPorPatron");
-
 		query.setHint("javax.persistence.cache.storeMode", "REFRESH");
-
 		query.setParameter("patron", patron);
-
-		resultado = (List<Jugador>) query.getResultList();
-		
+		resultado = (List<Jugador>) query.getResultList();		
 		return resultado;
 	}
 	public Jugador getJugador(String nombreJugador) {

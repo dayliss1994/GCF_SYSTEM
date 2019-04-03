@@ -290,7 +290,6 @@ public class UsuarioEditar extends SelectorComposer{
 			if (isValidarDatos() == true) {
 				// Inicia la transaccion
 				usuarioDao.getEntityManager().getTransaction().begin();	
-
 				if (usuario.getIdUsuario() == null) {
 					usuario.setClave(encriptar(clave.getText()));
 					usuarioDao.getEntityManager().persist(usuario);
@@ -298,17 +297,12 @@ public class UsuarioEditar extends SelectorComposer{
 					usuario = (Usuario) usuarioDao.getEntityManager().merge(usuario);
 					usuario.setClave(encriptar(clave.getText()));				
 				}
-
-				// Cierra la transaccion.
 				usuarioDao.getEntityManager().getTransaction().commit();
-
 				Clients.showNotification("Proceso Ejecutado con exito.");
-
-				// Actualiza la lista
 				usuarioLista.buscar();
-
-				// Cierra la ventana
 				salir();
+			}else {
+				Clients.showNotification("Verifique que los campos esten llenos.");
 			}
 
 		} catch (Exception e) {

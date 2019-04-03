@@ -1,16 +1,17 @@
 package ec.edu.upse.gcf.modelo;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import org.eclipse.persistence.annotations.AdditionalCriteria;
 
-/**
- * The persistent class for the posicionjuego database table.
- * 
- */
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Posicionjuego.findAll", query="SELECT p FROM Posicionjuego p"),
@@ -24,24 +25,20 @@ public class Posicionjuego implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_posicionjuego")
-	private int idPosicionjuego;
+	private Integer idPosicionjuego;
 
 	private String descripcion;
 
 	private String estado;
 
-	//bi-directional many-to-one association to Persona
-	@OneToMany(mappedBy="posicionjuego")
-	private List<Jugador> jugadores;
-
 	public Posicionjuego() {
 	}
 
-	public int getIdPosicionjuego() {
+	public Integer getIdPosicionjuego() {
 		return this.idPosicionjuego;
 	}
 
-	public void setIdPosicionjuego(int idPosicionjuego) {
+	public void setIdPosicionjuego(Integer idPosicionjuego) {
 		this.idPosicionjuego = idPosicionjuego;
 	}
 

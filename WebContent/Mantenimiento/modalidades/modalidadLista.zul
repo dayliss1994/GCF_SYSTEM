@@ -18,7 +18,8 @@
 					onClick="@command('eliminar')" />
 			</div>
 			<hlayout>
-				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
 				<button label="Buscar!" iconSclass="z-icon-search"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('buscar')" />
@@ -32,7 +33,7 @@
 					</listhead>
 					<template name="model">
 						<listitem>
-							<listcell label="${each.descripcion}" />						
+							<listcell label="${each.descripcion}" />
 						</listitem>
 					</template>
 				</listbox>

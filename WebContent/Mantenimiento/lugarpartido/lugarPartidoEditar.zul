@@ -18,7 +18,7 @@
 					<row>
 						<label value="Descripción: "
 							sclass="font-weight-bold col-form-label" />
-						<textbox id="descripcion"
+						<textbox id="descripcion" style="text-transform:uppercase"
 							value="@bind(vm.lugarpartido.nombreCancha)" hflex="1"
 							maxlength="255" />
 					</row>
@@ -38,12 +38,10 @@
 				</rows>
 			</grid>
 			<div>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</div>

@@ -6,8 +6,7 @@
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.control.MenuPrincipalControl')"
 		height="100%">
 		<div sclass="container-fluid" height="100%">
-			<div sclass="row" style="background:#0489B1;"
-				height="100px">
+			<div sclass="row" style="background:#0489B1;" height="100px">
 				<image src="/img/banazul.png" hflex="1px" vflex="1px" />
 			</div>
 			<div sclass="row" vflex="1">
@@ -16,21 +15,17 @@
 					<div sclass="row">
 						<div width="350px">
 							<!-- PANEL USUARIO -->
-							<div class="panel panel-default"
-								style="border:1px;">
+							<div class="panel panel-default" style="border:1px;">
 								<!-- ENCABEZADO -->
-								<div class="panel-heading"
-									align="center" style="background:#58ACFA;">
-									<label
-										value="¡Bienvenido al Sistema!" style="font-size:12px;"
-										class="font-weight-bold" />
+								<div class="panel-heading" align="center"
+									style="background:#58ACFA;">
+									<label value="¡Bienvenido al Sistema!"
+										style="font-size:12px;" class="font-weight-bold" />
 								</div>
 								<!-- CONTENIDO -->
-								<div class="panel-body"
-									style="border:1px;">
+								<div class="panel-body" style="border:1px;">
 									<hlayout valign="middle">
-										<label
-											value="@load(vm.nombreUsuario)"
+										<label value="@load(vm.nombreUsuario)"
 											sclass=" p-2 mb font-weight-bold" style="font-size:12px;" />
 										<a href="/Mantenimiento/usuarios/cambioDatos.zul"
 											sclass=" p-2 mb font-weight-bold" style="font-size:12px;">
@@ -40,8 +35,8 @@
 											action="j_spring_security_logout" method="POST"
 											xmlns:h="native">
 											<html>
-												<input type="hidden"
-													name="${_csrf.parameterName}" value="${_csrf.token}" />
+												<input type="hidden" name="${_csrf.parameterName}"
+													value="${_csrf.token}" />
 												<input value="Salir"
 													style="color:blue;background:#FFFFFF;border:0px;"
 													type="submit" />

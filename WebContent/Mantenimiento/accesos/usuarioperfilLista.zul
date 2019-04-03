@@ -8,17 +8,21 @@
 		border="none">
 		<vlayout vflex="1">
 			<div>
-				<button label="Nuevo" iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn btn-sm"
+				<button label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('nuevo')" />
-				<button label="Editar" iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn btn-sm"
+				<button label="Editar" iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('editar')" />
-				<button label="Eliminar"
-					iconSclass="z-icon-trash-o" zclass="btn btn-outline-primary btn btn-sm"
+				<button label="Eliminar" iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('eliminar')" />
 			</div>
 			<hlayout>
-				<textbox value="@bind(vm.textoBuscar)" hflex="1" />
-				<button label="Buscar!" iconSclass="z-icon-search" zclass="btn btn-outline-primary btn btn-sm"
+				<textbox value="@bind(vm.textoBuscar)" hflex="1"
+					style="text-transform:uppercase" />
+				<button label="Buscar!" iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('buscar')" />
 			</hlayout>
 			<hlayout vflex="1" hflex="1">
@@ -28,12 +32,12 @@
 					<listhead>
 						<listheader label="Usuario" />
 						<listheader label="Perfil" />
-						
+
 					</listhead>
 					<template name="model" var="u">
 						<listitem>
 							<listcell label="@load(u.usuario.usuario)" />
-							<listcell label="@load(u.perfil.nombre)" />							
+							<listcell label="@load(u.perfil.nombre)" />
 						</listitem>
 					</template>
 				</listbox>

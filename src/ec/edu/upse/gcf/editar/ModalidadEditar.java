@@ -56,6 +56,8 @@ public class ModalidadEditar {
 	@Command
 	public void grabar(){			
 		try {
+				
+			if (isValidarDatos() == true) {
 				// Inicia la transaccion
 				modalidadDao.getEntityManager().getTransaction().begin();
 		
@@ -76,6 +78,9 @@ public class ModalidadEditar {
 				
 				// Cierra la ventana
 				salir();
+			}else {
+				Clients.showNotification("Verifique que los campos esten llenos.");
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

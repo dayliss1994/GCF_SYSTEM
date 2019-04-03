@@ -4,6 +4,7 @@ package ec.edu.upse.gcf.editar;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -66,12 +67,7 @@ public class JugadorEditar {
 	private EquipoDAO equipoDao = new EquipoDAO();
 	// Objeto que contiene la persona con la que se esta trabajando
 	private Jugador jugador;
-	//private JugadorLista jugadorLista;
-
-
-	/**
-	 * Metodo que emula al metodo doAfterComposer de MVC
-	 */
+	
 	@AfterCompose
 	public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
 
@@ -79,6 +75,13 @@ public class JugadorEditar {
 		Selectors.wireComponents(view, this, false);
 		jugador = (Jugador) Executions.getCurrent().getArg().get("Jugador");		
 	}
+	
+	public List<String> getGenero() {		
+        List<String> genero = new ArrayList<String>();	
+        genero.add("FEMENINO");				
+        genero.add("MASCULINO");   
+        return genero;					
+      }
 
 	@SuppressWarnings("unused")
 	/*@Command

@@ -21,11 +21,8 @@ import ec.edu.upse.gcf.modelo.Lugarpartido;
 import ec.edu.upse.gcf.modelo.Tipocancha;
 
 public class LugarPartidoEditar {
-	@Wire
-	private Textbox descripcion;
-
-	@Wire
-	private Window winLugarPartidoEditar;
+	@Wire private Textbox descripcion;
+	@Wire private Window winLugarPartidoEditar;
 
 	private LugarPartidoDAO lugarpartidoDao = new LugarPartidoDAO();
 	private Lugarpartido lugarpartido;	
@@ -33,11 +30,7 @@ public class LugarPartidoEditar {
 
 	@AfterCompose
 	public void afterCompose(@ContextParam(ContextType.VIEW) Component view) {
-
-		// Permite enlazar los componentes que se asocian con la anotacion @Wire
 		Selectors.wireComponents(view, this, false);
-
-		// Recupera el objeto pasado como parametro. 
 		lugarpartido = (Lugarpartido) Executions.getCurrent().getArg().get("Lugarpartido");	
 	}
 
@@ -52,7 +45,7 @@ public class LugarPartidoEditar {
 			return resultado;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return true;
 		}
 	}
 
@@ -64,9 +57,6 @@ public class LugarPartidoEditar {
 			}else {
 				// Inicia la transaccion
 				lugarpartidoDao.getEntityManager().getTransaction().begin();
-
-				// Almacena los datos.
-				// Si es nuevo sa el metodo "persist" de lo contrario usa el metodo "merge"
 				if (lugarpartido.getId_lugarP() == 0) {
 					lugarpartidoDao.getEntityManager().persist(lugarpartido);
 				}else{

@@ -28,9 +28,9 @@
 										<label value="Nombre:"
 											sclass="font-weight-bold col-form-label" />
 										<div>
-											<textbox id="nombre"
-												style="text-transform:uppercase" xmlns:w="client"
-												value="@bind(vm.institucion.nombre)" hflex="1" />
+											<textbox id="nombre" style="text-transform:uppercase"
+												xmlns:w="client" value="@bind(vm.institucion.nombre)"
+												hflex="1" />
 										</div>
 									</row>
 									<row>
@@ -94,13 +94,12 @@
 										<label value="Logo:"
 											sclass="font-weight-bold col-form-label" />
 										<div align="left">
-											<image width="125px"
-												content="@load(vm.imagen)"
+											<image width="125px" content="@load(vm.imagen)"
 												style="border:1px #cccccc solid; " />
 											<separator spacing="3px" />
 											<div align="left">
-												<button id="btnUpload"
-													label="Cargar..." upload="true" width="125px"
+												<button id="btnUpload" label="Cargar..."
+													upload="true" width="125px"
 													onUpload="@command('subir', upEvent=event)"
 													iconSclass="z-icon-upload"
 													zclass="btn btn-outline-primary btn btn-sm" />
@@ -110,16 +109,14 @@
 									<row>
 										<label value="Correo: "
 											sclass="font-weight-bold col-form-label" />
-										<textbox id="correo"
-											style="text-transform:lowercase"
+										<textbox id="correo" style="text-transform:lowercase"
 											value="@bind(vm.institucion.correo)" onClick="" hflex="1"
 											maxlength="100" />
 									</row>
 									<row>
 										<label value="Lugar: "
 											sclass="font-weight-bold col-form-label" />
-										<textbox id="lugar"
-											style="text-transform:uppercase"
+										<textbox id="lugar" style="text-transform:uppercase"
 											value="@bind(vm.institucion.lugar)" hflex="1" maxlength="100" />
 									</row>
 								</rows>
@@ -130,12 +127,10 @@
 			</tabbox>
 			<!-- Botones -->
 			<div>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</div>

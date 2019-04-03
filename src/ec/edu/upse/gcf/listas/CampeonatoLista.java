@@ -18,6 +18,7 @@ import org.zkoss.zul.Window;
 
 import ec.edu.upse.gcf.dao.CampeonatoDAO;
 import ec.edu.upse.gcf.modelo.Campeonato;
+import ec.edu.upse.gcf.util.PrintReport;
 
 @SuppressWarnings({ "unchecked" })
 public class CampeonatoLista{
@@ -44,7 +45,6 @@ public class CampeonatoLista{
 		// Limpia os objetos de trabajo
 		campeonatoSeleccionado = null; 
 		campeonatoSeleccionado = null; 
-
 	}	
 	
 	/**
@@ -75,7 +75,15 @@ public class CampeonatoLista{
 		params.put("Campeonato", campeonatoSeleccionado);
 		Window ventanaCargar = (Window) Executions.createComponents("/Mantenimiento/campeonatos/campeonatoEditar.zul", null, params);
 		ventanaCargar.doModal();
-
+	}
+	
+	@Command
+	public void verReporte(){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("nombreCampeonato", "Campeonato 2018");
+		PrintReport pr = new PrintReport();
+		pr.crearReporte("/Reportes/prueba.jasper", campeonatoDao, param);
+		pr.showReport("Reporte de caja resumido");
 	}
 	
 

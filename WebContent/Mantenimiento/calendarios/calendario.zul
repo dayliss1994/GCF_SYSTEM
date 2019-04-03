@@ -2,14 +2,15 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window apply="org.zkoss.bind.BindComposer"  border="none" width="580px"
-		style="padding: 0 0 0 0;background:#0489B1;" position="center"
-		mode="embedded" viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CalendarioEditar')">
+	<window apply="org.zkoss.bind.BindComposer" border="none"
+		width="580px" style="padding: 0 0 0 0;background:#0489B1;"
+		position="center" mode="embedded"
+		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.CalendarioEditar')">
 		<caption label="Grupos de enfrentamiento" height="20px"
 			sclass="p-1 text-white font-italic font-weight-bold" />
 		<hlayout>
-			<listbox model="@load(vm.detalleCampeonato)" autopaging="true" mold="paging"
-				hflex="1" vflex="1">
+			<listbox model="@load(vm.detalleCampeonato)"
+				autopaging="true" mold="paging" hflex="1" vflex="1">
 				<listhead>
 					<listheader label="Grupo 1" />
 					<listheader label="Grupo 2" />

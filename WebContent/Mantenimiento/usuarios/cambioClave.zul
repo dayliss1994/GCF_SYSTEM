@@ -2,7 +2,7 @@
 <?script src="/webjars/bootstrap/4.0.0/js/bootstrap.min.js" ?>
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
-	<window id="winUsuarioEditar" border="none" width="400px"		
+	<window id="winUsuarioEditar" border="none" width="400px"
 		apply="ec.edu.upse.gcf.editar.UsuarioEditar"
 		style="padding: 0 0 0 0;background:#0489B1;" position="center"
 		mode="overlapped">
@@ -16,33 +16,31 @@
 						<image src="/img/advertencia.ico" height="50px" />
 					</div>
 					<div align="center" hflex="1">
-						<label 
+						<label
 							value="Iniciaste sesión por primera vez, por favor cambia tu clave de acceso!!"
 							style="color:red" sclass=" p-0 mb font-italic font-weight-bold" />
 					</div>
 				</hlayout>
 				<div align="center">
 					<space spacing="42px" />
-					<label value="Clave nueva :"
-						sclass="font-weight-bold" />
-					<textbox id="claveNueva" type="password" 
-						value="@{winUsuarioEditar$composer.usuario.clave}"/>
+					<label value="Clave nueva :" sclass="font-weight-bold" />
+					<textbox id="claveNueva" type="password"
+						value="@{winUsuarioEditar$composer.usuario.clave}" />
 				</div>
 				<div align="center">
 					<space spacing="12px" />
-					<label value="Confirmar clave : "
-						sclass="font-weight-bold" />
-					<textbox id="confirmaClave" type="password" 
-						value="@{winUsuarioEsditar$composer.usuario.clave}"/>
+					<label value="Confirmar clave : " sclass="font-weight-bold" />
+					<textbox id="confirmaClave" type="password"
+						value="@{winUsuarioEsditar$composer.usuario.clave}" />
 				</div>
 				<div align="right">
 					<hlayout>
 						<button id="grabando" label="Grabar"
 							iconSclass="z-icon-save" disabled="validarClavesIguales"
-							sclass="btn btn-outline-primary btn btn-sm"/>
+							sclass="btn btn-outline-primary btn btn-sm" />
 						<button id="salir" label="Salir"
 							iconSclass="z-icon-sign-out"
-							sclass="btn btn-outline-danger btn btn-sm"/>
+							sclass="btn btn-outline-danger btn btn-sm" />
 					</hlayout>
 				</div>
 			</vlayout>

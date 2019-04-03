@@ -3,7 +3,7 @@
 <?link rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" ?>
 <zk>
 	<window id="winJugadorEditar" border="none" width="600px"
-		height="530px" sclass="p-0 mb-0 bg-info"
+		height="545px" sclass="p-0 mb-0 bg-info"
 		style="padding: 0 0 0 0;background:#0489B1;" position="center"
 		mode="embedded" apply="org.zkoss.bind.BindComposer"
 		viewModel="@id('vm') @init('ec.edu.upse.gcf.editar.JugadorEditar')">
@@ -28,38 +28,61 @@
 										<label value="Cédula/Pasaporte:"
 											sclass="font-weight-bold col-form-label" />
 										<div>
-											<textbox id="cedula"
-												xmlns:w="client" value="@bind(vm.jugador.identificacion)"
-												width="150px" maxlength="13" />
-											<checkbox id="validar"
-												checked="false" />
+											<textbox id="cedula" xmlns:w="client"
+												value="@bind(vm.jugador.identificacion)" width="150px"
+												maxlength="13" />
+											<checkbox id="validar" checked="false" />
 											<label value="No Validar" />
 										</div>
 									</row>
 									<row>
 										<label value="Nombres: "
 											sclass="font-weight-bold col-form-label" />
-										<textbox id="nombres"
+										<textbox id="nombres" style="text-transform:uppercase"
 											value="@bind(vm.jugador.nombres)" hflex="1" maxlength="255" />
 									</row>
 									<row>
 										<label value="Apellidos: "
 											sclass="font-weight-bold col-form-label" />
 										<textbox id="apellidos"
-											value="@bind(vm.jugador.apellidos)" hflex="1"
-											maxlength="255" />
+											style="text-transform:uppercase"
+											value="@bind(vm.jugador.apellidos)" hflex="1" maxlength="255" />
 									</row>
 									<row>
 										<label value="FechaNac: "
 											sclass="font-weight-bold col-form-label" />
 										<datebox id="fechaNac"
-											value="@bind(vm.jugador.fechaNac)"  onClick ="" hflex="1" />
+											value="@bind(vm.jugador.fechaNac)" onClick="" hflex="1" />
 									</row>
 									<row>
 										<label value="Edad: "
 											sclass="font-weight-bold col-form-label" />
-										<textbox id="edad"
-											value="@bind(vm.jugador.edad)" onClick="" hflex="1" maxlength="5" />
+										<textbox id="edad" xmlns:w="client"
+											value="@bind(vm.jugador.edad)" onClick="" hflex="1"
+											maxlength="5">
+											<attribute w:name="doKeyPress_">
+												function(evt){
+												if(this.getValue().length
+												> 0 ){ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												}else{ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												} }
+											</attribute>
+										</textbox>
+									</row>
+									<row>
+										<label value="Género: "
+											sclass="font-weight-bold col-form-label" />
+										<combobox model="@load(vm.genero)"
+											value="@bind(vm.jugador.genero)"
+											placeholder="Seleccione el equipo" hflex="1"
+											style="text-transform:uppercase">
+										</combobox>
 									</row>
 								</rows>
 							</grid>
@@ -77,13 +100,12 @@
 										<label value="Foto:"
 											sclass="font-weight-bold col-form-label" />
 										<div align="left">
-											<image width="125px"
-												content="@load(vm.imagen)"
+											<image width="125px" content="@load(vm.imagen)"
 												style="border:1px #cccccc solid; " />
 											<separator spacing="3px" />
 											<div align="left">
-												<button id="btnUpload"
-													label="Cargar..." upload="true" width="125px"
+												<button id="btnUpload" label="Cargar..."
+													upload="true" width="125px"
 													onUpload="@command('subir', upEvent=event)"
 													iconSclass="z-icon-upload"
 													zclass="btn btn-outline-primary btn btn-sm" />
@@ -93,39 +115,51 @@
 									<row>
 										<label value="Equipo: "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.equipos)"
+										<combobox model="@load(vm.equipos)"
+											style="text-transform:uppercase"
 											selectedItem="@bind(vm.jugador.equipo)"
 											value="@load(vm.jugador.equipo.nombre)"
-											placeholder="Seleccione el equipo" width="300px">
-											<template name="model"
-												var="e">
-												<comboitem
-													label="@bind(e.nombre)" value="@load(each)" />
+											placeholder="Seleccione el equipo" hflex="1">
+											<template name="model" var="e">
+												<comboitem label="@bind(e.nombre)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
 									<row>
 										<label value="PosiciónJuego: "
 											sclass="font-weight-bold col-form-label" />
-										<combobox
-											model="@load(vm.posiciones)"
+										<combobox model="@load(vm.posiciones)"
+											style="text-transform:uppercase"
 											selectedItem="@bind(vm.jugador.posicionjuego)"
 											value="@load(vm.jugador.posicionjuego.descripcion)"
-											placeholder="Posición de juego" width="300px">
-											<template name="model"
-												var="p">
-												<comboitem
-													label="@bind(p.descripcion)" value="@load(each)" />
+											placeholder="Posición de juego" hflex="1">
+											<template name="model" var="p">
+												<comboitem label="@bind(p.descripcion)"
+													value="@load(each)" />
 											</template>
 										</combobox>
 									</row>
 									<row>
 										<label value="NumCamisa: "
 											sclass="font-weight-bold col-form-label" />
-										<textbox id="numcamisa"
+										<textbox id="numcamisa" xmlns:w="client"
 											value="@bind(vm.jugador.numerocamiseta)" hflex="1"
-											maxlength="5" />
+											maxlength="5">
+											<attribute w:name="doKeyPress_">
+												function(evt){
+												if(this.getValue().length
+												> 0 ){ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												}else{ if
+												(!this._shallIgnore(evt,
+												"0123456789"))
+												this.$doKeyPress_(evt);
+												} }
+											</attribute>
+										</textbox>
 									</row>
 								</rows>
 							</grid>
@@ -135,12 +169,10 @@
 			</tabbox>
 			<!-- Botones -->
 			<div>
-				<button id="grabar" label="Grabar"
-					iconSclass="z-icon-save"
+				<button id="grabar" label="Grabar" iconSclass="z-icon-save"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('grabar')" />
-				<button id="salir" label="Salir"
-					iconSclass="z-icon-sign-out"
+				<button id="salir" label="Salir" iconSclass="z-icon-sign-out"
 					zclass="btn btn-outline-primary btn btn-sm"
 					onClick="@command('salir')" />
 			</div>

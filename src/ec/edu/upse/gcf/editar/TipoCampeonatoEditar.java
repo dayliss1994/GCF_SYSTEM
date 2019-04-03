@@ -6,6 +6,7 @@ import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.Wire;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Window;
 
 import ec.edu.upse.gcf.dao.TipocampeonatoDAO;
@@ -17,6 +18,8 @@ public class TipoCampeonatoEditar extends SelectorComposer<Component> {
 	// Enlaza a la ventana para poderla cerrar
 	@Wire
 	private Window winTipoCampeonatoEditar;
+	
+	@Wire private Textbox descripcion;
 
 	private TipoCampeonatoLista tipoCampeonatoLista; 
 	private TipocampeonatoDAO tipoCampeonatoDao = new TipocampeonatoDAO();	
@@ -24,11 +27,7 @@ public class TipoCampeonatoEditar extends SelectorComposer<Component> {
 
 	public void doAfterCompose(Component comp) throws Exception{
 		super.doAfterCompose(comp);
-
-		// Recupera la ventana padre.
 		tipoCampeonatoLista = (TipoCampeonatoLista)Executions.getCurrent().getArg().get("VentanaPadre");
-
-		// Recupera el objeto pasado como parametro. Si no lo recibe, crea uno
 		tipoCampeonato = null; 
 		if (Executions.getCurrent().getArg().get("TipoCampeonato") != null) {
 			tipoCampeonato = (Tipocampeonato) Executions.getCurrent().getArg().get("TipoCampeonato");
@@ -37,61 +36,52 @@ public class TipoCampeonatoEditar extends SelectorComposer<Component> {
 		}
 	}
 
-	/**
-	 * Escucha el evento "onClick" del objeto "grabar"
-	 */
-	@Listen("onClick=#grabar")
-	public void grabar(){
-		System.out.println("entra grabando");
+	public boolean isValidarDatos() {
 		try {
-			// Inicia la transaccion
-			tipoCampeonatoDao.getEntityManager().getTransaction().begin();
-
-			// Almacena los datos.
-			// Si es nuevo utiliza el metodo "persist" de lo contrario usa el metodo "merge"
-			if (tipoCampeonato.getIdTipocamp() == null) {
-				tipoCampeonatoDao.getEntityManager().persist(tipoCampeonato);
-			}else{
-				tipoCampeonato = (Tipocampeonato) tipoCampeonatoDao.getEntityManager().merge(tipoCampeonato);
-			}
-
-			// Cierra la transaccion.
-			tipoCampeonatoDao.getEntityManager().getTransaction().commit();
-
-			
-			Clients.showNotification("Proceso Ejecutado con exito.");
-
-			// Actualiza la lista
-			tipoCampeonatoLista.buscar();
-			// Cierra la ventana
-			salir();
-
+			Boolean resultado = true;			
+			if(descripcion.getText() == null) {
+				Clients.showNotification("Por favor ingrese la descripción.!!");
+				descripcion.focus();
+				return resultado;
+			}	
+			return resultado;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@Listen("onClick=#grabar")
+	public void grabar(){		
+		try {
+			if (isValidarDatos() == true) {
+				tipoCampeonatoDao.getEntityManager().getTransaction().begin();
 
-			// Si hay error, reversa la transaccion.
+				if (tipoCampeonato.getIdTipocamp() == null) {
+					tipoCampeonatoDao.getEntityManager().persist(tipoCampeonato);
+				}else{
+					tipoCampeonato = (Tipocampeonato) tipoCampeonatoDao.getEntityManager().merge(tipoCampeonato);
+				}
+				tipoCampeonatoDao.getEntityManager().getTransaction().commit();
+				Clients.showNotification("Proceso Ejecutado con exito.");
+				tipoCampeonatoLista.buscar();
+				salir();
+			}else {
+				Clients.showNotification("Verifique que los campos esten llenos.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 			tipoCampeonatoDao.getEntityManager().getTransaction().rollback();
 		}
 	}
 
-	/**
-	 * Escucha el evento "onClick" del objeto "salir"
-	 */
 	@Listen("onClick=#salir")
 	public void salir(){
 		winTipoCampeonatoEditar.detach();
 	}
-
-	/**
-	 * Retorna una lista de paises, se deberia recuperar de una tabla.
-	 * @return
-	 */
-
 	public Tipocampeonato getTipoCampeonato() {
 		return tipoCampeonato;
 	}
-
-
 	public void setTipoCampeonato(Tipocampeonato tipoCampeonato) {
 		this.tipoCampeonato = tipoCampeonato;
 	}

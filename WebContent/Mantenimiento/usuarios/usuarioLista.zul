@@ -8,21 +8,25 @@
 		style="padding: 0 0 0 0;background:#FFFFFF;">
 		<vlayout vflex="1">
 			<div>
-				<button id="btnNuevo" label="Nuevo"
-					iconSclass="z-icon-plus" zclass="btn btn-outline-primary btn btn-sm" />
+				<button id="btnNuevo" label="Nuevo" iconSclass="z-icon-plus"
+					zclass="btn btn-outline-primary btn btn-sm" />
 				<button id="btnEditar" label="Editar"
-					iconSclass="z-icon-pencil" zclass="btn btn-outline-primary btn btn-sm" />
+					iconSclass="z-icon-pencil"
+					zclass="btn btn-outline-primary btn btn-sm" />
 				<button id="btnEliminar" label="Eliminar"
-					iconSclass="z-icon-trash-o" zclass="btn btn-outline-primary btn btn-sm" />
+					iconSclass="z-icon-trash-o"
+					zclass="btn btn-outline-primary btn btn-sm" />
 			</div>
 			<hlayout>
-				<textbox id="txtBuscar" hflex="1" />
+				<textbox id="txtBuscar" hflex="1"
+					style="text-transform:uppercase" />
 				<button id="btnBuscar" label="Buscar!"
-					iconSclass="z-icon-search" zclass="btn btn-outline-primary btn btn-sm" />
+					iconSclass="z-icon-search"
+					zclass="btn btn-outline-primary btn btn-sm" />
 			</hlayout>
 			<hlayout vflex="1" hflex="1">
 				<listbox id="lstUsuarios"
-					model="@{winListaUsuarios$composer.usuarios}" 
+					model="@{winListaUsuarios$composer.usuarios}"
 					selectedItem="@{winListaUsuarios$composer.usuarioSeleccionado}"
 					hflex="1" vflex="1">
 					<listhead>

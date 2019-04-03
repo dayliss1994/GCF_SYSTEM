@@ -1,5 +1,7 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                          http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
@@ -17,10 +19,14 @@
 		<!-- ZK AU reqeust -->
 		<intercept-url pattern="/zkau/**" access="permitAll" />
 
-		<!-- Seguridad de la aplicacion --> 
-		<intercept-url pattern="/index.zul" access="isAuthenticated()" />
-		<intercept-url pattern="/Mantenimiento/**,/Estructura/**" access="hasRole('Administrador')" />
-		<intercept-url pattern="/Mantenimiento/**,/Estructura/**"
+		<!-- Seguridad de la aplicacion -->
+		<intercept-url pattern="/index.zul"
+			access="isAuthenticated()" />
+		<intercept-url
+			pattern="/Mantenimiento/**,/Estructura/**"
+			access="hasRole('Administrador')" />
+		<intercept-url
+			pattern="/Mantenimiento/**,/Estructura/**"
 			access="hasRole('Usuario') or hasRole('Administrador')" />
 		<intercept-url pattern="/" access="permitAll" />
 
@@ -31,8 +37,8 @@
 			login-processing-url="/j_spring_security_check" />
 
 		<!-- Definicion del proceso de logout -->
-		<logout logout-success-url="/index.zul" invalidate-session="true"
-			logout-url="/j_spring_security_logout" />
+		<logout logout-success-url="/index.zul"
+			invalidate-session="true" logout-url="/j_spring_security_logout" />
 
 		<!-- https://es.wikipedia.org/wiki/Cross-site_request_forgery -->
 		<csrf disabled="true" />
@@ -45,12 +51,14 @@
 	</http>
 
 	<!-- Objeto que recupera los datos del usuario -->
-	<beans:bean id="servicioAutenticacion" class="ec.edu.upse.gcf.security.ServicioAutenticacion" />
+	<beans:bean id="servicioAutenticacion"
+		class="ec.edu.upse.gcf.security.ServicioAutenticacion" />
 
 	<!-- Definicion del proceso de autenticacion -->
 
 	<authentication-manager>
-		<authentication-provider user-service-ref="servicioAutenticacion">
+		<authentication-provider
+			user-service-ref="servicioAutenticacion">
 			<password-encoder hash="md5" />
 		</authentication-provider>
 	</authentication-manager>
